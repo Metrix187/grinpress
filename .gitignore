@@ -1,0 +1,11 @@
+data/
+fonts/
+checkpoints/
+ckpt_test/
+__pycache__/
+*.pt
+*.png
+!preview_grid.png
+venv/
+.venv/
+*.zip
