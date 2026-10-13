@@ -14,6 +14,7 @@ ink colors, three moods (`smiley`, `sad`, `meh`) and up to 8 characters of wood-
 yellowed newsprint. *arf!*
 
 made with tail wags by **the puppygirl CEO of Quantara ([quantara.cv](https://quantara.cv))** 💛
+🎮 Try it live: [huggingface.co/spaces/skyuu72/grinpress-demo](https://huggingface.co/spaces/skyuu72/grinpress-demo) 🐾
 Weights + model card: [huggingface.co/skyuu72/grinpress](https://huggingface.co/skyuu72/grinpress) :3
 
 ![16 dataset samples](preview_grid.png)
