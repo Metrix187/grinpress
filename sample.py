@@ -68,9 +68,13 @@ def main():
         sys.exit(f"error: {e}")
     print(f"parsed: color={color} expression={expr} text={text!r}")
     model = build_model().to(a.device).eval()
-    ck = torch.load(a.checkpoint, map_location=a.device, weights_only=False)
-    sd = ck["model"] if (a.no_ema and "model" in ck) else ck.get("ema", ck.get("model"))
-    model.load_state_dict(sd)
+    if a.checkpoint.endswith(".safetensors"):
+        from safetensors.torch import load_file
+        sd = load_file(a.checkpoint, device=str(a.device))  # flat EMA state_dict (bf16 or fp32)
+    else:
+        ck = torch.load(a.checkpoint, map_location=a.device, weights_only=False)
+        sd = ck["model"] if (a.no_ema and "model" in ck) else ck.get("ema", ck.get("model"))
+    model.load_state_dict({k: v.float() for k, v in sd.items()})  # upcast bf16 weights
     x = sample(model, caption, a.resolution, a.steps, a.cfg_scale, a.seed, a.device, a.num_images)
     imgs = ((x + 1) * 127.5).round().byte().permute(0, 2, 3, 1).cpu().numpy()
     Image.fromarray(np.concatenate(list(imgs), axis=1)).save(a.out)
