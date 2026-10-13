@@ -14,6 +14,18 @@ all on yellowed newsprint.
 
 ![16 dataset samples](preview_grid.png)
 
+## Training progression
+The final model trained for 60k steps at batch 64 (bf16) on one Colab A100, about 7 h. Each grid uses
+the same fixed prompts and seeds. Rows: red smiley 'HELLO', blue sad 'NEWS', green meh 'OK', yellow
+smiley 'XQ7'.
+
+| 5k | 20k | 40k | 60k |
+|---|---|---|---|
+| ![](samples/step_0005000.png) | ![](samples/step_0020000.png) | ![](samples/step_0040000.png) | ![](samples/step_0060000.png) |
+
+All grids (every 5k steps) are in [`samples/`](samples/). `samples/final_sample.png` is the
+notebook's final-cell output.
+
 ## Train on Colab (recommended)
 1. Open `smiley_flow_colab.ipynb` in Colab and pick a GPU runtime (A100 or L4).
 2. **Run all.** The notebook mounts Drive, writes the sources, generates 50k images on local disk, and

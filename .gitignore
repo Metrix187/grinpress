@@ -5,6 +5,7 @@ ckpt_test/
 __pycache__/
 *.pt
 *.png
+!samples/*.png
 !preview_grid.png
 venv/
 .venv/
